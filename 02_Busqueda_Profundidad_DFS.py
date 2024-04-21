@@ -5,10 +5,11 @@ def dfs_profundidad(grafo, Inicio, recorridos=None, nodos=None):#funcion para  i
         recorridos = set()
     recorridos.add(Inicio)#Agregamos el nodo a la lista de recorridos
 
-    for x in range (len(grafo[Inicio])):
+    for x in range (len(grafo[Inicio])):#recorremos el grafo
         if grafo[Inicio][x] == 1 and nodos[x] not in recorridos:
-            dfs_profundidad(grafo, x, recorridos, nodos)
-    print(recorridos)
+            dfs_profundidad(grafo, x, recorridos, nodos)#
+    print(recorridos)#imprimimos los recorridos
+    return recorridos
 nodos= {
    'a':1 ,
     1:'b',
@@ -17,9 +18,9 @@ nodos= {
     4:'e',
     5:'f',
     6:'g',
-}
+}#nodos del grafo
 
-grafo_matriz= [
+grafo_matriz= [   
      #a b c d e f g
     [-1,1,1,0,0,0,0],#a
     [ 0,0,0,1,1,0,0],#b
@@ -28,6 +29,6 @@ grafo_matriz= [
     [ 0,0,0,0,0,0,0],#e
     [ 0,0,0,0,0,0,0],#f
     [ 0,0,0,0,0,0,0],#g
-]
+]#grafo en matriz de adyacencia
 print('recoridos de profundidad:\n')
-print (dfs_profundidad(grafo_matriz, 0,nodos=nodos))
+print (dfs_profundidad(grafo_matriz, 0,nodos=nodos))#
