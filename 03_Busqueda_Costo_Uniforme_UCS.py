@@ -15,7 +15,7 @@ def CostoU(grafo,Nodo_Star):
             continue
 
         visitados.add(Nodo_actual)
-        print(f'Paso de nodo:',{Nodo_actual},'Costo acumulado:',{costo_acumulado})
+        print(f'cantidad de recorido:',{Nodo_actual},'Costo acumulado:',{costo_acumulado})
 
         for Nodo_siguiente,costoT in grafo.get(Nodo_actual,[]):
             if Nodo_siguiente not in visitados:
@@ -28,10 +28,10 @@ grafo = { 'entrada':[('sala',1),('cuarto_PB',1)],
     'cuarto_PB':[],
     'comedor':[('baño_PB',2),('cocina',4)],
     'baño_PB':[],
-    'cocina':[('cuarto_lavado',5),('patio_Tracero',2)],
+    'cocina':[('cuarto_lavado',5),('patio_Tracero',5)],
     'cuarto_lavado':[],
     'Patio_Tracero':[],
-    'escaleras':[('planta_Alta',3)],
+    'escaleras':[('planta_Alta',2)],
     'planta_Alta':[('Cuarto_PA_1',9),('vestibulo',8),('baño_PA',9),('cuarto_2_PA',11)],
     'Cuarto_PA_1':[],
     'vestibulo':[],
