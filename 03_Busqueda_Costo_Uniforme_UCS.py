@@ -4,26 +4,26 @@ import heapq # para usar la cola de prioridad
 
 #Funcion para encontrar el camino mas corto
 
-def CostoU(grafo,Nodo_Star):
+def CostoU(grafo,Nodo_Star): #Nodo_Star es el nodo inicial  
     visitados = set()
     #Cola de prioridad
     cola = [(0,Nodo_Star,)]
     
-    while cola:
+    while cola: 
         (costo_acumulado,Nodo_actual) = heapq.heappop(cola)
         if Nodo_actual in visitados:
             continue
 
-        visitados.add(Nodo_actual)
-        print(f'cantidad de recorido:',{Nodo_actual},'Costo acumulado:',{costo_acumulado})
+        visitados.add(Nodo_actual)#Agregamos el nodo a la lista de visitados
+        print(f'Paso de nodo:',{Nodo_actual},'Costo acumulado:',{costo_acumulado})
 
-        for Nodo_siguiente,costoT in grafo.get(Nodo_actual,[]):
-            if Nodo_siguiente not in visitados:
+        for Nodo_siguiente,costoT in grafo.get(Nodo_actual,[]):#Obtenemos los nodos adyacentes
+            if Nodo_siguiente not in visitados:#Si el nodo no esta en la lista de visitados
                 Nuevo_costo = costo_acumulado + int(costoT)
-                heapq.heappush(cola,(Nuevo_costo,Nodo_siguiente, ))
+                heapq.heappush(cola,(Nuevo_costo,Nodo_siguiente, ))#Agregamos el nodo a la cola de prioridad
     return visitados
 
-grafo = { 'entrada':[('sala',1),('cuarto_PB',1)],
+grafo = { 'entrada':[('sala',1),('cuarto_PB',1)],#Agregamos los nodos y sus adyacencias
     'sala':[('comedor',2),('escaleras',2)],
     'cuarto_PB':[],
     'comedor':[('baño_PB',2),('cocina',4)],
