@@ -1,24 +1,37 @@
 #busqueda tabu
-import random
-def busqueda_tabu(lista, objetivo, tamano_tabu):
-    #lista de elementos que no se pueden visitar
-    tabu = []
-    for i in range(tamano_tabu):
-        #seleccionamos un elemento aleatorio de la lista
-        elemento = random.choice(lista)
-        #si el elemento no esta en la lista de tabu, lo agregamos
-        if elemento not in tabu:
-            tabu.append(elemento)
-    #recorremos la lista
-    for i in range(len(lista)):
-        #si el elemento de la lista no esta en la lista de tabu, lo agregamos
-        if lista[i] not in tabu:
-            #si el elemento de la lista es igual al objetivo, lo retornamos
-            if lista[i] == objetivo:
-                return i
-            #si el elemento de la lista no es igual al objetivo, lo agregamos a la lista de tabu
-            else:
-                tabu.append(lista[i])
-                #si la lista de tabu tiene el tamaño maximo, eliminamos el primer elemento
-                if len(tabu) == tamano_tabu:
-                    tabu.pop(0)     
+import random 
+def problemas(solucion):
+    return sum (solucion)
+
+def inicio (numeros):
+    return [random.randint(0,50) for _ in range (numeros)]
+
+def cambio_solus(solucion):
+    index_1, indeX_2=random.sample(range(len(solucion)),2)
+    solucion[index_1], solucion[indeX_2] = solucion[indeX_2], solucion[index_1]
+    return solucion
+   
+#funcion de busqueda tabu
+def tabu (interacciones,listas_tabu_1):
+    #generar una solucion inicial
+    solucion_m = inicio(10)
+    #generar una lista tabu
+    valor= problemas(solucion_m)
+    lista_tabu = []
+    for _ in range (interacciones):
+        #generar una nueva solucion
+        nuevo =[cambio_solus(solucion_m) for _ in range(10)]
+        mejor_nuevo= min (nuevo, key=lambda x:(problemas(x)))
+        
+        if mejor_nuevo not in lista_tabu:
+            solucion_m = mejor_nuevo
+            valor= problemas(solucion_m)
+            lista_tabu.append(mejor_nuevo)
+        if len(lista_tabu) > listas_tabu_1:
+            lista_tabu.pop(0)
+    return solucion_m,valor
+solucion_m, valor = tabu(interacciones=50, listas_tabu_1=5)
+print(f'solucion encontrada : {solucion_m}')
+print(f'valor es:  {valor}')
+
+            
