@@ -3,6 +3,7 @@ import random
 def problemas(solucion):
     return sum (solucion)
 
+
 def inicio (numeros):
     return [random.randint(0,50) for _ in range (numeros)]
 
